@@ -31,7 +31,7 @@ const Navbar = ({ session }) => {
     <nav className="navbar">
       <div className="navbar-brand">
         <Activity className="neon-text-cyan" size={22} />
-        <span className="font-orbitron neon-text-cyan" style={{ fontSize: '1.1rem', fontWeight: 900, letterSpacing: -1, fontStyle: 'italic' }}>NETLYTICS</span>
+        <span className="font-orbitron neon-text-cyan" style={{ fontSize: '1.1rem', fontWeight: 900, letterSpacing: -1, fontStyle: 'italic' }}>NETCHRONAIX</span>
       </div>
       <div className="navbar-links">
         <Link to="/" className={isActive('/')}><Gauge size={14} /><span>{t('nav.test')}</span></Link>

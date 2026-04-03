@@ -113,7 +113,7 @@ const SpeedTest = ({ session }) => {
                 <div className="flex-center" style={{gap:12}}>
                     <div className="header-icon-box"><Gauge style={{color:'#00f3ff'}} size={24}/></div>
                     <div style={{textAlign:'left'}}>
-                        <h1 className="header-title">NETLYTICS</h1>
+                        <h1 className="header-title">NETCHRONAIX</h1>
                         <span className="header-sub">PRECISION SPEED ANALYSIS V8</span>
                     </div>
                 </div>

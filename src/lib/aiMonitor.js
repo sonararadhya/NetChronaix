@@ -1,5 +1,5 @@
 /**
- * Netlytics V9 — AI Monitor Engine
+ * NetChronaix V9 — AI Monitor Engine
  * Anomaly detection, trend analysis, and health scoring.
  */
 

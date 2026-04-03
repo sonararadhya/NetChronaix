@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 
 /**
- * Netlytics V10 — ISP Congestion Heatmap
+ * NetChronaix V10 — ISP Congestion Heatmap
  * Visualizes connection quality patterns across the week.
  */
 

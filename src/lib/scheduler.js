@@ -2,13 +2,13 @@ import { supabase } from './supabaseClient';
 import { runFullTest } from './speedEngine';
 
 /**
- * Netlytics V9 — Scheduler Engine
+ * NetChronaix V9 — Scheduler Engine
  * Manages interval-based and daily scheduled speed tests.
  * Persists schedules in localStorage + Supabase.
  */
 
-const STORAGE_KEY = 'netlytics_schedules';
-const RESULTS_KEY = 'netlytics_auto_results';
+const STORAGE_KEY = 'netchronaix_schedules';
+const RESULTS_KEY = 'netchronaix_auto_results';
 let activeTimers = {};
 
 // ==============================================
@@ -134,9 +134,9 @@ export const startScheduleTimers = (userId, onTestStart, onTestComplete) => {
                 const [h, m] = schedule.dailyTime.split(':').map(Number);
                 if (now.getHours() === h && now.getMinutes() === m) {
                     const todayKey = now.toISOString().split('T')[0] + '_' + schedule.id;
-                    const ranToday = localStorage.getItem('netlytics_daily_' + todayKey);
+                    const ranToday = localStorage.getItem('netchronaix_daily_' + todayKey);
                     if (!ranToday) {
-                        localStorage.setItem('netlytics_daily_' + todayKey, 'true');
+                        localStorage.setItem('netchronaix_daily_' + todayKey, 'true');
                         executeTest(schedule, userId, onTestStart, onTestComplete);
                     }
                 }
@@ -179,7 +179,7 @@ const executeTest = async (schedule, userId, onTestStart, onTestComplete) => {
 
     // Browser notification
     if ('Notification' in window && Notification.permission === 'granted') {
-        new Notification('Netlytics Auto Test Complete', {
+        new Notification('NetChronaix Auto Test Complete', {
             body: `DL: ${result.download} Mbps | UL: ${result.upload} Mbps | Ping: ${result.ping}ms`,
             icon: '/vite.svg',
         });

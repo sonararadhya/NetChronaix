@@ -1,9 +1,9 @@
 /**
- * Netlytics V9 — Internationalization (i18n)
+ * NetChronaix V9 — Internationalization (i18n)
  * Multi-language support with localStorage persistence.
  */
 
-const LANG_KEY = 'netlytics_lang';
+const LANG_KEY = 'netchronaix_lang';
 
 export const LANGUAGES = {
     en: { label: 'English', flag: '🇺🇸' },

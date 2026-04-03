@@ -18,6 +18,9 @@ function App() {
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
       setLoading(false);
+    }).catch(err => {
+      console.error("Failed to get session:", err);
+      setLoading(false);
     });
 
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
@@ -33,7 +36,7 @@ function App() {
       <div className="flex-center" style={{ height: '100vh', background: '#020205' }}>
         <div className="flex-col-center" style={{ gap: 16 }}>
           <div className="spin" style={{ width: 48, height: 48, border: '3px solid rgba(0,243,255,0.2)', borderTopColor: 'var(--neon-cyan)', borderRadius: '50%' }}></div>
-          <div className="neon-text-cyan pulse font-orbitron" style={{ fontSize: 11, letterSpacing: 6, fontWeight: 700 }}>BOOTING_NETLYTICS</div>
+          <div className="neon-text-cyan pulse font-orbitron" style={{ fontSize: 11, letterSpacing: 6, fontWeight: 700 }}>BOOTING_NETCHRONAIX</div>
         </div>
       </div>
     );

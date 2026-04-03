@@ -1,137 +1,239 @@
 <div align="center">
-  <img src="https://raw.githubusercontent.com/sonararadhya/Netlytics/main/public/vite.svg" alt="Netlytics Logo" width="120" height="120">
-  
-  # 🌐 Netlytics Zenith V10
-  ### *The Gold Standard in Network Telemetry & Intelligence*
-  
-  [![License: MIT](https://img.shields.io/badge/License-MIT-cyan.svg)](https://opensource.org/licenses/MIT)
-  [![Vite](https://img.shields.io/badge/Frontend-Vite-purple.svg)](https://vitejs.dev/)
-  [![Supabase](https://img.shields.io/badge/Backend-Supabase-green.svg)](https://supabase.com/)
-  [![React](https://img.shields.io/badge/UI-React_19-blue.svg)](https://react.dev/)
+  <img src="public/favicon.png" alt="NetChronaix Logo" width="120" height="120" />
 
-  **Stop guessing. Start knowing.** Netlytics Zenith is a high-fidelity, automated network monitoring suite that transforms raw connection data into actionable intelligence.
+  # 🌐 NetChronaix Zenith V10
+  ### *Advanced Network Intelligence Platform for Real-Time Telemetry & Analysis*
 
-  [Explore Features](#-key-capabilities) • [Technical Architecture](#-technical-stack) • [Quick Start](#-installation--setup) • [Author](#-the-architect)
+  <p>
+    <img src="https://img.shields.io/badge/Frontend-Vite-purple.svg" />
+    <img src="https://img.shields.io/badge/UI-React_19-blue.svg" />
+    <img src="https://img.shields.io/badge/Backend-Supabase-green.svg" />
+    <img src="https://img.shields.io/badge/Status-Production--Ready-success.svg" />
+  </p>
+
+  <b>Transform raw network data into actionable intelligence.</b>
+
+  <br/><br/>
+
+  [🚀 Features](#-key-features) • 
+  [🧠 Problem & Solution](#-the-problem) • 
+  [⚔️ Comparison](#️-why-netchronaix-stands-out) • 
+  [🏗 Architecture](#-technical-architecture) • 
+  [⚙️ Setup](#-installation--setup) • 
+  [🎯 Use Cases](#-real-world-use-cases) • 
+  [👨‍💻 Author](#-author)
 </div>
 
 ---
 
-## 📽️ The Vision
+## 🧠 Overview
 
-In an era of high-speed fiber and low-latency gaming, "just checking the speed" isn't enough. **Netlytics Zenith** was engineered for the power user who demands crystalline clarity. It doesn't just ping a server; it probes the very fabric of your connection, analyzing jitter, identifying packet loss, and detecting anomalies before you even notice them.
+**NetChronaix Zenith V10** is a **next-generation network monitoring and analytics platform** designed for developers, gamers, and system analysts who need **deep visibility into network performance**.
 
-With its **Cyberpunk-inspired aesthetics** and **AI-driven reports**, Netlytics turns complex telemetry into a sleek, premium experience.
+Unlike traditional speed testers, NetChronaix provides:
+- Real-time telemetry
+- AI-powered diagnostics
+- Historical analytics
+- Professional reporting tools
+
+> ⚡ *Stop guessing your network performance. Start measuring it intelligently.*
 
 ---
 
-## 📸 Visual Showcase
+## 📸 Product Showcase
 
 <div align="center">
-  <h3>🚀 Core Engine</h3>
-  <img src="Screenshots/speed.png" alt="Speed Test Engine" width="800">
-  <p><i>Industry-grade speed engine with progressive probing.</i></p>
-  <br/>
-  
-  <h3>🧠 AI Monitoring & Insights</h3>
-  <img src="Screenshots/ai%20monitor.png" alt="AI Monitor" width="800">
-  <p><i>Autonomous health scoring and anomaly detection.</i></p>
-  <br/>
+  <img src="Screenshots/speed.png" width="800"/>
+  <p><i>High-precision speed testing engine with progressive probing</i></p>
 
-  <h3>📊 Telemetry Dashboard</h3>
-  <img src="Screenshots/data.png" alt="Data Dashboard" width="800">
-  <p><i>Historical analytics and node performance tracking.</i></p>
-  <br/>
+  <img src="Screenshots/ai%20monitor.png" width="800"/>
+  <p><i>AI-powered diagnostics with real-time health scoring</i></p>
 
-  <h3>📅 Precision Scheduler</h3>
-  <img src="Screenshots/scheduler.png" alt="Scheduler" width="800">
-  <p><i>Autonomous testing intervals and daily health checks.</i></p>
-  <br/>
+  <img src="Screenshots/data.png" width="800"/>
+  <p><i>Advanced telemetry dashboard with historical insights</i></p>
 
-  <h3>📥 File Speed Monitor</h3>
-  <img src="Screenshots/filespeed.png" alt="File Monitor" width="800">
-  <p><i>Direct download speed tracking with real-time ETA.</i></p>
+  <img src="Screenshots/scheduler.png" width="800"/>
+  <p><i>Automated scheduler for continuous monitoring</i></p>
+
+  <img src="Screenshots/filespeed.png" width="800"/>
+  <p><i>Live file transfer monitoring with ETA prediction</i></p>
 </div>
 
 ---
 
-## 🔥 Key Capabilities (V10)
+## 🚨 The Problem
 
-### 🧠 AI Network Intelligence
-- **Real-Time Diagnostics**: Advanced algorithms calculate a 0-100 Health Score based on your unique connection profile.
-- **Natural Language Reports**: Get plain-English summaries of your network quality—perfect for non-technical clients or detailed troubleshooting.
-- **Anomaly Detection**: Flags sudden performance drops (>40%) and latency spikes instantly.
+Modern internet users rely on outdated tools that only answer one question:
 
-### 🗺️ ISP Congestion Heatmaps [NEW]
-- **Time-of-Day Analysis**: Visualize exactly when your ISP is underperforming. Our 7x24 grid identifies peak congestion hours vs. optimal windows.
-- **Historical Evidence**: Aggregate weeks of data to see recurring throttling patterns.
+> *"What is my speed right now?"*
 
-### 📄 Proof of Service PDF Reports [NEW]
-- **Professional Audits**: Generate "Proof of Service" PDF reports to share with your provider.
-- **ISP Accountability**: Includes max/avg speeds, latency metrics, and a detailed audit trail of performance degradation.
+But real-world performance depends on far more:
 
-### 🎮 Multi-Node Purpose Testing [NEW]
-- **Gaming Profile**: Optimized for low-latency assessment (60+ ping samples) to detect micro-jitter.
-- **Streaming Profile**: Optimized for bulk throughput testing with extra-large data rounds.
+- ❌ No visibility into **jitter spikes**
+- ❌ No detection of **packet loss**
+- ❌ No understanding of **network stability over time**
+- ❌ No way to **prove ISP underperformance**
+- ❌ No actionable insights — just raw numbers
+
+⚠️ Result: Users experience lag, buffering, and instability **without knowing why**
 
 ---
 
-## 🛠️ Technical Stack
+## 💡 The Solution — NetChronaix Zenith
 
-Built with a performance-first mindset:
+**NetChronaix Zenith transforms raw network tests into intelligent diagnostics.**
 
-- **Core**: React 19 + Vite (Ultra-fast HMR)
-- **State & Data**: Supabase (PostgreSQL + Real-time Auth)
-- **Analytics**: Recharts (Dynamic area & bar charts)
-- **Reporting**: jsPDF & AutoTable (Professional PDF generation)
-- **Design**: Pure Vanilla CSS3 (Glassmorphism, CSS Variables, Hardware-accelerated animations)
-- **Engine**: Custom XMLHttpRequest & Fetch Probing Logic
+Instead of a single snapshot, it provides:
+
+- 🧠 **AI-driven analysis** → Understand *why* your network behaves the way it does  
+- 📊 **Continuous telemetry** → Track performance over time  
+- 🗺️ **ISP congestion insights** → Identify peak throttling periods  
+- 📄 **Proof-based reporting** → Generate professional audit reports  
+- ⚡ **Real-time anomaly detection** → Catch issues before they impact you  
+
+> 🚀 *From “checking speed” → to “understanding network behavior”*
+
+---
+
+## ⚔️ Why NetChronaix Stands Out
+
+| Feature                  | NetChronaix Zenith | Speedtest | Fast.com |
+|--------------------------|-----------------|----------|----------|
+| Speed Measurement        | ✅              | ✅       | ✅       |
+| Jitter Analysis          | ✅              | ❌       | ❌       |
+| Packet Loss Detection    | ✅              | ❌       | ❌       |
+| AI-Based Insights        | ✅              | ❌       | ❌       |
+| Historical Tracking      | ✅              | ❌       | ❌       |
+| ISP Congestion Heatmaps  | ✅              | ❌       | ❌       |
+| Proof Reports (PDF)      | ✅              | ❌       | ❌       |
+
+> 🥇 NetChronaix is not just a tester — it's a **complete network intelligence system**
+
+---
+
+## 🚀 Key Features
+
+### 🧠 AI Network Intelligence
+- Real-time Network Health Score (0–100)
+- Natural language performance summaries
+- Automatic anomaly detection
+
+### 📊 Telemetry & Analytics
+- Historical performance tracking
+- Jitter, latency, packet loss visualization
+- Multi-session comparisons
+
+### 🗺️ ISP Congestion Analysis
+- Time-of-day performance insights
+- Identify throttling patterns
+- Weekly trend analysis
+
+### 📄 Reporting System
+- Generate professional PDF reports
+- Share performance audits with ISPs
+- Detailed performance logs
+
+### 🎮 Multi-Profile Testing
+- Gaming Mode → latency-focused
+- Streaming Mode → throughput-focused
+
+### ⏱️ Smart Scheduler
+- Automated test intervals
+- Continuous monitoring
+- Zero manual effort
+
+---
+
+## 🏗 Technical Architecture
+
+| Layer            | Technology |
+|------------------|-----------|
+| Frontend         | React 19 + Vite |
+| Backend          | Supabase (PostgreSQL + Auth + Realtime) |
+| Visualization    | Recharts |
+| Reporting        | jsPDF + AutoTable |
+| Styling          | CSS3 (Glassmorphism UI) |
+| Engine           | Custom Fetch/XHR Probing Logic |
 
 ---
 
 ## 🔒 Security & Privacy
 
-We take data integrity seriously:
-- **Row Level Security (RLS)**: Your logs are yours alone. No other user can ever see your network metadata.
-- **Environment Isolation**: All sensitive API keys are handled via `.env` files and never committed to the repository.
-- **Local Persistence**: Mission-critical settings remain local to your browser for sub-millisecond response times.
+- 🔐 Row Level Security (RLS)
+- 🔑 Secure environment variables
+- 💾 Local persistence for performance
+- 🚫 No unauthorized data exposure
 
 ---
 
 ## ⚙️ Installation & Setup
 
-1. **Clone & Install**
-   ```bash
-   git clone https://github.com/sonararadhya/Netlytics.git
-   cd Netlytics
-   npm install
-   ```
+### 1️⃣ Clone Repository
+```bash
+git clone https://github.com/sonararadhya/NetChronaix.git
+cd NetChronaix
+npm install
+```
 
-2. **Environment Variables**
-   Create a `.env` file in the root:
-   ```env
-   VITE_SUPABASE_URL=your_project_url
-   VITE_SUPABASE_ANON_KEY=your_anon_key
-   ```
+### 2️⃣ Configure Environment
+```env
+VITE_SUPABASE_URL=your_project_url
+VITE_SUPABASE_ANON_KEY=your_anon_key
+```
 
-3. **Run Locally**
-   ```bash
-   npm run dev
-   ```
+### 3️⃣ Run Application
+```bash
+npm run dev
+```
 
 ---
 
-## 👨‍💻 The Architect
+## 🎯 Real-World Use Cases
+
+### 🎮 Gamers
+- Detect micro-lag, jitter spikes, and unstable ping  
+- Optimize connection for competitive gameplay  
+
+### 📡 Remote Workers
+- Ensure stable Zoom/Meet calls  
+- Identify hidden instability affecting productivity  
+
+### 🏢 ISPs & Network Providers
+- Analyze congestion patterns across time  
+- Validate infrastructure performance  
+
+### 👨‍💻 Developers & Engineers
+- Debug API latency and backend delays  
+- Monitor real-world network conditions  
+
+### 📊 Researchers & Analysts
+- Collect structured telemetry data  
+- Perform trend analysis and performance modeling  
+
+---
+
+## 🌟 Why This Project Matters
+
+- Combines **network engineering + AI intelligence**
+- Solves **real-world connectivity problems**
+- Built with **modern production-grade stack**
+- Focused on **performance, UX, and analytics**
+- Demonstrates **full-stack + system design expertise**
+
+---
+
+## 👨‍💻 Author
 
 **Aradhya Sonar**  
-*AI-Driven Software Developer | Full-Stack Web Engineer | Machine Learning Specialist*
+*Full-Stack Developer | AI Enthusiast | Network Systems Builder*
 
 📍 Pune, India  
-🔗 [GitHub Profile](https://github.com/sonararadhya)  
-💼 [LinkedIn](https://www.linkedin.com/in/aradhya-sonar/)
+🔗 GitHub: https://github.com/sonararadhya  
+💼 LinkedIn: https://www.linkedin.com/in/aradhya-sonar/
 
 ---
 
 <div align="center">
-  <p>Built with ❤️ by Aradhya Sonar. Licensed under MIT.</p>
-  <img src="https://img.shields.io/badge/Built%20With-Passion-ff69b4.svg" alt="Built With Passion">
+  <h3>🚀 Built with precision, performance, and passion</h3>
+  <p>If you found this project useful, consider ⭐ starring the repository</p>
 </div>

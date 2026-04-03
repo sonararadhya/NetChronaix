@@ -1,7 +1,7 @@
 import { supabase } from './supabaseClient';
 
 /**
- * Netlytics V8.2 — Industry-Grade Speed Engine
+ * NetChronaix V8.2 — Industry-Grade Speed Engine
  * Upload uses fetch with mode:'no-cors' to Cloudflare __up (bypasses CORS preflight).
  */
 

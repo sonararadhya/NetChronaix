@@ -1,10 +1,10 @@
 /**
- * Netlytics V9 — Alert System
+ * NetChronaix V9 — Alert System
  * Configurable thresholds, browser notifications, and mailto alerts.
  */
 
-const THRESHOLDS_KEY = 'netlytics_alert_thresholds';
-const ALERT_HISTORY_KEY = 'netlytics_alert_history';
+const THRESHOLDS_KEY = 'netchronaix_alert_thresholds';
+const ALERT_HISTORY_KEY = 'netchronaix_alert_history';
 
 export const DEFAULT_THRESHOLDS = {
     downloadMin: 10,        // Mbps — alert if below
@@ -86,7 +86,7 @@ export const checkAlerts = (result) => {
 const sendBrowserNotification = (alert) => {
     if ('Notification' in window && Notification.permission === 'granted') {
         const icon = alert.severity === 'critical' ? '🚨' : '⚠️';
-        new Notification(`${icon} Netlytics Alert`, {
+        new Notification(`${icon} NetChronaix Alert`, {
             body: alert.message,
             icon: '/vite.svg',
             tag: alert.type,
@@ -95,9 +95,9 @@ const sendBrowserNotification = (alert) => {
 };
 
 const sendEmailAlert = (alert, email) => {
-    const subject = encodeURIComponent(`[NETLYTICS ${alert.severity.toUpperCase()}] ${alert.type.replace('_', ' ')}`);
+    const subject = encodeURIComponent(`[NETCHRONAIX ${alert.severity.toUpperCase()}] ${alert.type.replace('_', ' ')}`);
     const body = encodeURIComponent(
-        `Netlytics Network Alert\n` +
+        `NetChronaix Network Alert\n` +
         `========================\n\n` +
         `Severity: ${alert.severity.toUpperCase()}\n` +
         `Type: ${alert.type}\n` +
@@ -105,7 +105,7 @@ const sendEmailAlert = (alert, email) => {
         `Value: ${alert.value}\n` +
         `Threshold: ${alert.threshold}\n` +
         `Time: ${new Date(alert.timestamp).toLocaleString()}\n\n` +
-        `— Netlytics Monitoring System`
+        `— NetChronaix Monitoring System`
     );
     window.open(`mailto:${email}?subject=${subject}&body=${body}`, '_blank');
 };

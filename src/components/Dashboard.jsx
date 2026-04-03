@@ -52,7 +52,7 @@ const Dashboard = ({ session }) => {
   };
 
   const exportToXML = () => {
-    let xml = '<?xml version="1.0" encoding="UTF-8"?>\n<NetlyticsReport>\n';
+    let xml = '<?xml version="1.0" encoding="UTF-8"?>\n<NetChronaixReport>\n';
     xml += `  <Metadata>\n    <User>${session.user.email}</User>\n    <ExportDate>${new Date().toISOString()}</ExportDate>\n  </Metadata>\n  <DataLog>\n`;
     logs.forEach(day => {
       xml += `    <DailyLog date="${day.date}">\n`;
@@ -61,10 +61,10 @@ const Dashboard = ({ session }) => {
       });
       xml += `    </DailyLog>\n`;
     });
-    xml += '  </DataLog>\n</NetlyticsReport>';
+    xml += '  </DataLog>\n</NetChronaixReport>';
     const a = document.createElement('a');
     a.href = URL.createObjectURL(new Blob([xml], { type: 'application/xml' }));
-    a.download = `Netlytics_${new Date().toISOString().split('T')[0]}.xml`;
+    a.download = `NetChronaix_${new Date().toISOString().split('T')[0]}.xml`;
     a.click();
   };
 
