@@ -11,10 +11,6 @@ const CustomCursor = () => {
   const cursorY = useSpring(-100, springConfig);
 
   useEffect(() => {
-    // Only run cursor effect if device has a pointer/mouse
-    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-    if (isTouchDevice) return;
-
     const updateMousePosition = (e) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
       cursorX.set(e.clientX);
@@ -23,7 +19,6 @@ const CustomCursor = () => {
 
     const handleMouseOver = (e) => {
       const target = e.target;
-      // Check if target is interactive
       const isInteractive = 
         window.getComputedStyle(target).cursor === 'pointer' || 
         target.tagName.toLowerCase() === 'button' ||
@@ -52,11 +47,8 @@ const CustomCursor = () => {
     };
   }, [cursorX, cursorY]);
 
-  // Don't render on mobile/touch interfaces
-  if ('ontouchstart' in window || navigator.maxTouchPoints > 0) return null;
-
   return (
-    <>
+    <div className="custom-cursor-wrapper">
       {/* Inner precise dot */}
       <motion.div
         className="custom-cursor-dot"
@@ -80,15 +72,14 @@ const CustomCursor = () => {
           y: cursorY.get() - (isHovering ? 24 : 16),
           width: isHovering ? 48 : 32,
           height: isHovering ? 48 : 32,
-          backgroundColor: isHovering ? 'rgba(0, 243, 255, 0.15)' : 'transparent',
-          borderColor: isHovering ? 'rgba(0, 243, 255, 1)' : 'rgba(0, 243, 255, 0.6)',
-          mixBlendMode: isHovering ? 'screen' : 'normal',
+          backgroundColor: isHovering ? 'var(--cursor-bg-hover)' : 'transparent',
+          borderColor: isHovering ? 'var(--cursor-border-hover)' : 'var(--cursor-border)',
           boxShadow: isHovering 
-            ? '0 0 20px rgba(0, 243, 255, 0.4)' 
-            : '0 0 8px rgba(0, 243, 255, 0.2)'
+            ? '0 0 20px var(--cursor-glow)' 
+            : '0 0 8px var(--cursor-glow)'
         }}
       />
-    </>
+    </div>
   );
 };
 

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { supabase } from '../lib/supabaseClient';
 import { t, getLang, setLang, LANGUAGES } from '../lib/i18n';
-import { Gauge, BarChart3, Clock, Shield, Download, LogOut, Activity, Globe, Menu, X } from 'lucide-react';
+import { Gauge, BarChart3, Clock, Shield, Download, LogOut, Activity, Globe, Menu, X, Sun, Moon } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const Navbar = ({ session }) => {
@@ -13,6 +13,10 @@ const Navbar = ({ session }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const langRef = useRef(null);
   const isActive = (path) => location.pathname === path ? 'navbar-link active' : 'navbar-link';
+
+  const [isLightMode, setIsLightMode] = useState(() => {
+    return document.body.classList.contains('light-theme');
+  });
 
   useEffect(() => {
     const handler = () => forceUpdate(n => n + 1);
@@ -30,6 +34,16 @@ const Navbar = ({ session }) => {
   useEffect(() => {
     setMobileMenuOpen(false);
   }, [location]);
+
+  const toggleTheme = () => {
+    const newMode = !isLightMode;
+    setIsLightMode(newMode);
+    if (newMode) {
+      document.body.classList.add('light-theme');
+    } else {
+      document.body.classList.remove('light-theme');
+    }
+  };
 
   const handleLogout = async () => { await supabase.auth.signOut(); navigate('/login'); };
   const currentLang = getLang();
@@ -84,6 +98,9 @@ const Navbar = ({ session }) => {
             </div>
             
             <span className="font-mono user-email desktop-only">{session.user.email?.split('@')[0]}</span>
+            <button onClick={toggleTheme} className="btn-logout desktop-only" style={{ color: 'var(--text-main)', borderColor: 'var(--glass-border)' }} title="Toggle Theme">
+              {isLightMode ? <Moon size={16} /> : <Sun size={16} />}
+            </button>
             <button onClick={handleLogout} className="btn-logout desktop-only" title="Logout"><LogOut size={16} /></button>
 
             {/* Mobile Menu Toggle */}
@@ -116,6 +133,9 @@ const Navbar = ({ session }) => {
                           <span>{lang.flag}</span>
                         </button>
                       ))}
+                      <button onClick={toggleTheme} className="lang-btn" style={{ marginLeft: 'auto' }}>
+                        {isLightMode ? <Moon size={16} /> : <Sun size={16} />} <span>Theme</span>
+                      </button>
                     </div>
                     <button onClick={handleLogout} className="btn-logout" title="Logout" style={{ width: '100%', justifyContent: 'center', marginTop: '12px' }}>
                       <LogOut size={16} /> <span>Logout ({session.user.email?.split('@')[0]})</span>
