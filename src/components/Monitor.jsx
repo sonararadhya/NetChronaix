@@ -29,6 +29,20 @@ const Monitor = ({ session }) => {
 
     const fetchData = async () => {
         setLoading(true);
+        if (session?.isGuest) {
+            try {
+                const data = JSON.parse(localStorage.getItem('netchronaix_guest_speed_logs') || '[]');
+                data.sort((a, b) => b.date.localeCompare(a.date));
+                const tests = data.flatMap(d => d.tests || []).sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+                setAllTests(tests);
+                setAnalysis(analyzeResults(tests));
+            } catch (e) {
+                console.error('Failed to load guest logs for monitor:', e);
+            }
+            setAlertHistory(getAlertHistory());
+            setLoading(false);
+            return;
+        }
         const { data } = await supabase.from('daily_speed_logs').select('*').eq('user_id', session.user.id).order('date', { ascending: false }).limit(30);
         if (data) {
             const tests = data.flatMap(d => d.tests || []).sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));

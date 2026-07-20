@@ -158,16 +158,31 @@ const executeTest = async (schedule, userId, onTestStart, onTestComplete) => {
     saveAutoResult(result);
 
     // Save to Supabase
-    try {
-        const today = new Date().toISOString().split('T')[0];
-        const { data: rows } = await supabase.from('daily_speed_logs').select('*').eq('user_id', userId).eq('date', today);
-        const row = rows?.length > 0 ? rows[0] : null;
-        if (row) {
-            await supabase.from('daily_speed_logs').update({ tests: [...row.tests, result] }).eq('id', row.id);
-        } else {
-            await supabase.from('daily_speed_logs').insert({ user_id: userId, date: today, tests: [result] });
-        }
-    } catch (e) { console.error('Scheduler DB save error:', e); }
+    if (userId === 'guest') {
+        try {
+            const today = new Date().toISOString().split('T')[0];
+            const localLogs = JSON.parse(localStorage.getItem('netchronaix_guest_speed_logs') || '[]');
+            let row = localLogs.find(r => r.user_id === 'guest' && r.date === today);
+            if (row) {
+                row.tests = [...row.tests, result];
+            } else {
+                row = { id: crypto.randomUUID(), user_id: 'guest', date: today, tests: [result] };
+                localLogs.push(row);
+            }
+            localStorage.setItem('netchronaix_guest_speed_logs', JSON.stringify(localLogs));
+        } catch (e) { console.error('Guest scheduler save error:', e); }
+    } else {
+        try {
+            const today = new Date().toISOString().split('T')[0];
+            const { data: rows } = await supabase.from('daily_speed_logs').select('*').eq('user_id', userId).eq('date', today);
+            const row = rows?.length > 0 ? rows[0] : null;
+            if (row) {
+                await supabase.from('daily_speed_logs').update({ tests: [...row.tests, result] }).eq('id', row.id);
+            } else {
+                await supabase.from('daily_speed_logs').insert({ user_id: userId, date: today, tests: [result] });
+            }
+        } catch (e) { console.error('Scheduler DB save error:', e); }
+    }
 
     // Update schedule lastRun
     const schedules = getSchedules();

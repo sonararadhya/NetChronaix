@@ -30,11 +30,11 @@ const Heatmap = ({ logs }) => {
     const maxSpeed = Math.max(...heatmapData.flat().filter(v => v !== null), 1);
 
     const getCellColor = (val) => {
-        if (val === null) return 'rgba(255,255,255,0.02)';
+        if (val === null) return 'var(--heatmap-empty, rgba(255,255,255,0.02))';
         const ratio = val / maxSpeed;
-        if (ratio > 0.8) return 'rgba(0, 243, 255, 0.6)'; // cyan (excellent)
+        if (ratio > 0.8) return 'rgba(var(--neon-cyan-rgb, 0, 243, 255), 0.6)'; // cyan (excellent)
         if (ratio > 0.5) return 'rgba(34, 197, 94, 0.4)'; // green (good)
-        if (ratio > 0.3) return 'rgba(234, 179, 8, 0.5)'; // yellow (congested)
+        if (ratio > 0.3) return 'rgba(var(--neon-yellow-rgb, 234, 179, 8), 0.5)'; // yellow (congested)
         return 'rgba(239, 68, 68, 0.6)'; // red (throttled)
     };
 
@@ -42,12 +42,12 @@ const Heatmap = ({ logs }) => {
         <div className="glass-panel" style={{ width: '100%', padding: 20 }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
                 <div>
-                    <h3 className="font-orbitron" style={{ fontSize: 10, letterSpacing: 2, color: '#00f3ff' }}>ISP CONGESTION HEATMAP</h3>
-                    <span className="font-mono" style={{ fontSize: 8, color: '#444' }}>DOWNLOAD PERFORMANCE BY TIME OF DAY</span>
+                    <h3 className="font-orbitron" style={{ fontSize: 10, letterSpacing: 2, color: 'var(--neon-cyan)' }}>ISP CONGESTION HEATMAP</h3>
+                    <span className="font-mono" style={{ fontSize: 8, color: 'var(--text-muted)' }}>DOWNLOAD PERFORMANCE BY TIME OF DAY</span>
                 </div>
                 <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
-                    <div className="flex-center" style={{ gap: 4 }}><div style={{ width: 8, height: 8, background: 'rgba(239, 68, 68, 0.6)', borderRadius: 2 }}></div><span className="font-mono" style={{ fontSize: 7, color: '#333' }}>CONGESTED</span></div>
-                    <div className="flex-center" style={{ gap: 4 }}><div style={{ width: 8, height: 8, background: 'rgba(0, 243, 255, 0.6)', borderRadius: 2 }}></div><span className="font-mono" style={{ fontSize: 7, color: '#333' }}>OPTIMAL</span></div>
+                    <div className="flex-center" style={{ gap: 4 }}><div style={{ width: 8, height: 8, background: 'rgba(239, 68, 68, 0.6)', borderRadius: 2 }}></div><span className="font-mono" style={{ fontSize: 7, color: 'var(--text-muted)' }}>CONGESTED</span></div>
+                    <div className="flex-center" style={{ gap: 4 }}><div style={{ width: 8, height: 8, background: 'rgba(var(--neon-cyan-rgb, 0, 243, 255), 0.6)', borderRadius: 2 }}></div><span className="font-mono" style={{ fontSize: 7, color: 'var(--text-muted)' }}>OPTIMAL</span></div>
                 </div>
             </div>
 
@@ -56,14 +56,14 @@ const Heatmap = ({ logs }) => {
                     <div style={{ width: 30 }}></div>
                     <div style={{ flex: 1, display: 'flex', justifyContent: 'space-between', padding: '0 4px', marginBottom: 6 }}>
                         {hours.filter(h => h % 4 === 0).map(h => (
-                            <span key={h} className="font-mono" style={{ fontSize: 8, color: '#333' }}>{h}h</span>
+                            <span key={h} className="font-mono" style={{ fontSize: 8, color: 'var(--text-muted)' }}>{h}h</span>
                         ))}
                     </div>
                 </div>
 
                 {days.map((dayName, dIdx) => (
                     <div key={dayName} style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                        <span className="font-mono" style={{ width: 30, fontSize: 9, color: '#444' }}>{dayName}</span>
+                        <span className="font-mono" style={{ width: 30, fontSize: 9, color: 'var(--text-muted)' }}>{dayName}</span>
                         <div style={{ flex: 1, display: 'grid', gridTemplateColumns: 'repeat(24, 1fr)', gap: 3 }}>
                             {hours.map(hIdx => (
                                 <div 
@@ -83,7 +83,7 @@ const Heatmap = ({ logs }) => {
                 ))}
             </div>
             
-            <p className="font-mono" style={{ fontSize: 8, color: '#222', marginTop: 12, textAlign: 'center' }}>
+            <p className="font-mono" style={{ fontSize: 8, color: 'var(--text-muted)', marginTop: 12, textAlign: 'center' }}>
                 *Darker red indicates periods of significant speed degradation compared to your network's peak.
             </p>
         </div>

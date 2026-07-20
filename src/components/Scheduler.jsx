@@ -104,25 +104,25 @@ const Scheduler = ({ session }) => {
         <div className="container-main">
             <header className="flex-col-center text-center" style={{ marginBottom: 28, gap: 8 }}>
                 <div className="flex-center" style={{ gap: 12 }}>
-                    <div className="header-icon-box" style={{ background: 'rgba(234,179,8,0.1)', borderColor: 'rgba(234,179,8,0.2)' }}>
-                        <Clock style={{ color: '#eab308' }} size={24} />
+                    <div className="header-icon-box" style={{ background: 'rgba(var(--neon-yellow-rgb, 234,179,8),0.1)', borderColor: 'rgba(var(--neon-yellow-rgb, 234,179,8),0.2)' }}>
+                        <Clock style={{ color: 'var(--neon-yellow, #eab308)' }} size={24} />
                     </div>
                     <div style={{ textAlign: 'left' }}>
-                        <h1 className="header-title" style={{ color: '#eab308', textShadow: '0 0 12px rgba(234,179,8,0.4)' }}>{t('sched.title')}</h1>
+                        <h1 className="header-title" style={{ color: 'var(--neon-yellow, #eab308)', textShadow: '0 0 12px rgba(var(--neon-yellow-rgb, 234,179,8),0.4)' }}>{t('sched.title')}</h1>
                         <span className="header-sub">{t('sched.subtitle')}</span>
                     </div>
                 </div>
             </header>
 
             {/* Background warning */}
-            <div className="glass-panel" style={{ width: '100%', padding: '10px 16px', marginBottom: 12, display: 'flex', alignItems: 'center', gap: 8, borderColor: 'rgba(234,179,8,0.15)' }}>
-                <AlertTriangle size={14} style={{ color: '#eab308', flexShrink: 0 }} />
-                <span className="font-mono" style={{ fontSize: 10, color: '#888', lineHeight: 1.5 }}>{backgroundNote}</span>
+            <div className="glass-panel" style={{ width: '100%', padding: '10px 16px', marginBottom: 12, display: 'flex', alignItems: 'center', gap: 8, borderColor: 'rgba(var(--neon-yellow-rgb, 234,179,8),0.15)' }}>
+                <AlertTriangle size={14} style={{ color: 'var(--neon-yellow, #eab308)', flexShrink: 0 }} />
+                <span className="font-mono" style={{ fontSize: 10, color: 'var(--text-muted)', lineHeight: 1.5 }}>{backgroundNote}</span>
             </div>
 
             {notifPermission !== 'granted' && (
                 <div className="glass-panel" style={{ width: '100%', padding: '12px 16px', marginBottom: 12, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                    <div className="flex-center" style={{ gap: 8 }}><BellOff size={14} style={{ color: '#eab308' }} /><span className="font-mono" style={{ fontSize: 10, color: '#888' }}>Enable notifications for auto-test alerts</span></div>
+                    <div className="flex-center" style={{ gap: 8 }}><BellOff size={14} style={{ color: 'var(--neon-yellow, #eab308)' }} /><span className="font-mono" style={{ fontSize: 10, color: 'var(--text-muted)' }}>Enable notifications for auto-test alerts</span></div>
                     <button onClick={async () => setNotifPermission(await requestNotificationPermission())} className="btn-primary" style={{ padding: '6px 16px', fontSize: '0.65rem', letterSpacing: 2 }}>{t('common.enable')}</button>
                 </div>
             )}
@@ -131,17 +131,17 @@ const Scheduler = ({ session }) => {
             <div className="glass-panel" style={{ width: '100%', padding: 18, marginBottom: 12 }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 14, borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: 10 }}>
                     <div className="flex-center" style={{ gap: 8 }}>
-                        <Timer size={14} style={{ color: '#eab308' }} />
-                        <span className="font-orbitron" style={{ fontSize: 9, letterSpacing: 2, color: '#888' }}>{t('sched.active')}</span>
-                        <span className="font-mono" style={{ fontSize: 9, color: '#444' }}>({schedules.length})</span>
+                        <Timer size={14} style={{ color: 'var(--neon-yellow, #eab308)' }} />
+                        <span className="font-orbitron" style={{ fontSize: 9, letterSpacing: 2, color: 'var(--text-muted)' }}>{t('sched.active')}</span>
+                        <span className="font-mono" style={{ fontSize: 9, color: 'var(--text-muted)' }}>({schedules.length})</span>
                     </div>
                     <button onClick={() => { setCreating(true); setEditing(null); }} className="sched-add-btn"><Plus size={14} /><span>NEW</span></button>
                 </div>
 
                 {schedules.length === 0 && (
-                    <div className="text-center" style={{ padding: '24px 0', color: '#333' }}>
+                    <div className="text-center" style={{ padding: '24px 0', color: 'var(--text-muted)' }}>
                         <Clock size={28} style={{ opacity: 0.2, marginBottom: 10 }} />
-                        <p className="font-mono" style={{ fontSize: 10, color: '#444' }}>{t('sched.noSchedules')}</p>
+                        <p className="font-mono" style={{ fontSize: 10, color: 'var(--text-muted)' }}>{t('sched.noSchedules')}</p>
                     </div>
                 )}
 
@@ -153,16 +153,16 @@ const Scheduler = ({ session }) => {
                                 <div className={`sched-card ${running === s.id ? 'sched-running' : ''} ${!s.enabled ? 'sched-disabled' : ''}`}>
                                     <div style={{ flex: 1 }}>
                                         <div className="flex-center" style={{ gap: 8, justifyContent: 'flex-start' }}>
-                                            {s.type === 'interval' ? <Timer size={13} style={{ color: '#eab308' }} /> : <Calendar size={13} style={{ color: '#bc13fe' }} />}
-                                            <span className="font-orbitron" style={{ fontSize: 10, color: '#ccc', letterSpacing: 1 }}>
+                                            {s.type === 'interval' ? <Timer size={13} style={{ color: 'var(--neon-yellow, #eab308)' }} /> : <Calendar size={13} style={{ color: 'var(--neon-purple)' }} />}
+                                            <span className="font-orbitron" style={{ fontSize: 10, color: 'var(--text-bright)', letterSpacing: 1 }}>
                                                 {s.type === 'interval' ? `Every ${s.intervalMinutes} min` : `Daily at ${s.dailyTime}`}
                                             </span>
                                             <span className="sched-profile-badge">{(TEST_PROFILES[s.testProfile]?.label || 'QUICK')}</span>
                                         </div>
                                         <div className="flex-center" style={{ gap: 14, marginTop: 5, justifyContent: 'flex-start' }}>
-                                            <span className="font-mono" style={{ fontSize: 9, color: '#444' }}>Next: <b style={{ color: s.enabled ? '#eab308' : '#333' }}>{s.enabled ? formatCountdown(s) : 'Paused'}</b></span>
-                                            {s.lastRun && <span className="font-mono" style={{ fontSize: 9, color: '#333' }}>Last: {new Date(s.lastRun).toLocaleTimeString()}</span>}
-                                            {running === s.id && <span className="font-mono pulse" style={{ fontSize: 9, color: '#00f3ff' }}>⚡ RUNNING</span>}
+                                            <span className="font-mono" style={{ fontSize: 9, color: 'var(--text-muted)' }}>Next: <b style={{ color: s.enabled ? 'var(--neon-yellow, #eab308)' : 'var(--text-muted)' }}>{s.enabled ? formatCountdown(s) : 'Paused'}</b></span>
+                                            {s.lastRun && <span className="font-mono" style={{ fontSize: 9, color: 'var(--text-muted)' }}>Last: {new Date(s.lastRun).toLocaleTimeString()}</span>}
+                                            {running === s.id && <span className="font-mono pulse" style={{ fontSize: 9, color: 'var(--neon-cyan)' }}>⚡ RUNNING</span>}
                                         </div>
                                     </div>
                                     <div className="flex-center" style={{ gap: 4 }}>
@@ -177,13 +177,13 @@ const Scheduler = ({ session }) => {
                                 /* EDIT INLINE */
                                 <div className="glass-panel-hero" style={{ padding: 16 }}>
                                     <div className="flex-center" style={{ justifyContent: 'space-between', marginBottom: 12 }}>
-                                        <span className="font-orbitron" style={{ fontSize: 10, letterSpacing: 2, color: '#eab308' }}>{t('common.edit')}</span>
-                                        <button onClick={() => setEditing(null)} className="sched-icon-btn"><X size={14} style={{ color: '#555' }} /></button>
+                                        <span className="font-orbitron" style={{ fontSize: 10, letterSpacing: 2, color: 'var(--neon-yellow, #eab308)' }}>{t('common.edit')}</span>
+                                        <button onClick={() => setEditing(null)} className="sched-icon-btn"><X size={14} style={{ color: 'var(--text-muted)' }} /></button>
                                     </div>
                                     <ScheduleForm type={newType} setType={setNewType} interval={newInterval} setInterval={setNewInterval} dailyTime={newDailyTime} setDailyTime={setNewDailyTime} profile={newProfile} setProfile={setNewProfile} />
                                     <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: 12, gap: 8 }}>
-                                        <button onClick={() => setEditing(null)} style={{ background: 'none', border: '1px solid rgba(255,255,255,0.08)', color: '#555', padding: '8px 18px', cursor: 'pointer', fontFamily: 'var(--font-header)', fontSize: 9, letterSpacing: 2 }}>{t('common.cancel')}</button>
-                                        <button onClick={handleSaveEdit} className="btn-primary" style={{ padding: '8px 22px', fontSize: '0.7rem', borderColor: '#eab308', color: '#eab308', textShadow: '0 0 10px rgba(234,179,8,0.5)' }}><Save size={12} /> {t('common.save')}</button>
+                                        <button onClick={() => setEditing(null)} style={{ background: 'none', border: '1px solid var(--glass-border)', color: 'var(--text-muted)', padding: '8px 18px', cursor: 'pointer', fontFamily: 'var(--font-header)', fontSize: 9, letterSpacing: 2 }}>{t('common.cancel')}</button>
+                                        <button onClick={handleSaveEdit} className="btn-primary" style={{ padding: '8px 22px', fontSize: '0.7rem', borderColor: 'var(--neon-yellow, #eab308)', color: 'var(--neon-yellow, #eab308)', textShadow: '0 0 10px rgba(var(--neon-yellow-rgb, 234,179,8),0.5)' }}><Save size={12} /> {t('common.save')}</button>
                                     </div>
                                 </div>
                             )}
@@ -195,11 +195,11 @@ const Scheduler = ({ session }) => {
             {/* CREATE NEW */}
             {creating && !editing && (
                 <div className="glass-panel-hero" style={{ width: '100%', padding: 20, marginBottom: 12 }}>
-                    <h3 className="font-orbitron" style={{ fontSize: 10, letterSpacing: 3, color: '#eab308', marginBottom: 14 }}>{t('sched.new')}</h3>
+                    <h3 className="font-orbitron" style={{ fontSize: 10, letterSpacing: 3, color: 'var(--neon-yellow, #eab308)', marginBottom: 14 }}>{t('sched.new')}</h3>
                     <ScheduleForm type={newType} setType={setNewType} interval={newInterval} setInterval={setNewInterval} dailyTime={newDailyTime} setDailyTime={setNewDailyTime} profile={newProfile} setProfile={setNewProfile} />
                     <div style={{ display: 'flex', gap: 10, justifyContent: 'flex-end', marginTop: 14 }}>
-                        <button onClick={() => setCreating(false)} style={{ background: 'none', border: '1px solid rgba(255,255,255,0.08)', color: '#555', padding: '8px 20px', cursor: 'pointer', fontFamily: 'var(--font-header)', fontSize: 9, letterSpacing: 2 }}>{t('common.cancel')}</button>
-                        <button onClick={handleCreate} className="btn-primary" style={{ padding: '8px 24px', fontSize: '0.75rem', borderColor: '#eab308', color: '#eab308', textShadow: '0 0 10px rgba(234,179,8,0.5)' }}>CREATE</button>
+                        <button onClick={() => setCreating(false)} style={{ background: 'none', border: '1px solid var(--glass-border)', color: 'var(--text-muted)', padding: '8px 20px', cursor: 'pointer', fontFamily: 'var(--font-header)', fontSize: 9, letterSpacing: 2 }}>{t('common.cancel')}</button>
+                        <button onClick={handleCreate} className="btn-primary" style={{ padding: '8px 24px', fontSize: '0.75rem', borderColor: 'var(--neon-yellow, #eab308)', color: 'var(--neon-yellow, #eab308)', textShadow: '0 0 10px rgba(var(--neon-yellow-rgb, 234,179,8),0.5)' }}>CREATE</button>
                     </div>
                 </div>
             )}
@@ -208,29 +208,29 @@ const Scheduler = ({ session }) => {
             <div className="glass-panel" style={{ width: '100%', padding: 18 }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12, borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: 10 }}>
                     <div className="flex-center" style={{ gap: 8 }}>
-                        <Activity size={14} style={{ color: '#00f3ff' }} />
-                        <span className="font-orbitron" style={{ fontSize: 9, letterSpacing: 2, color: '#888' }}>{t('sched.history')}</span>
-                        <span className="font-mono" style={{ fontSize: 9, color: '#444' }}>{autoResults.length} {t('common.results')}</span>
+                        <Activity size={14} style={{ color: 'var(--neon-cyan)' }} />
+                        <span className="font-orbitron" style={{ fontSize: 9, letterSpacing: 2, color: 'var(--text-muted)' }}>{t('sched.history')}</span>
+                        <span className="font-mono" style={{ fontSize: 9, color: 'var(--text-muted)' }}>{autoResults.length} {t('common.results')}</span>
                     </div>
                     {autoResults.length > 0 && (
                         <button onClick={handleClearHistory} className="sched-icon-btn sched-del" title={t('sched.deleteAll')}>
-                            <Trash2 size={12} /> <span className="font-mono" style={{ fontSize: 8, color: '#888', marginLeft: 4 }}>{t('sched.deleteAll')}</span>
+                            <Trash2 size={12} /> <span className="font-mono" style={{ fontSize: 8, color: 'var(--text-muted)', marginLeft: 4 }}>{t('sched.deleteAll')}</span>
                         </button>
                     )}
                 </div>
                 {autoResults.length === 0 ? (
-                    <div className="text-center" style={{ padding: '16px 0' }}><p className="font-mono" style={{ fontSize: 10, color: '#444' }}>No auto tests yet.</p></div>
+                    <div className="text-center" style={{ padding: '16px 0' }}><p className="font-mono" style={{ fontSize: 10, color: 'var(--text-muted)' }}>No auto tests yet.</p></div>
                 ) : (
                     <div className="sched-results-list">
                         {autoResults.slice(0, 30).map((r, i) => (
                             <div key={i} className="sched-result-row">
-                                <span className="font-mono" style={{ fontSize: 9, color: '#444', minWidth: 60 }}>{new Date(r.timestamp).toLocaleTimeString()}</span>
+                                <span className="font-mono" style={{ fontSize: 9, color: 'var(--text-muted)', minWidth: 60 }}>{new Date(r.timestamp).toLocaleTimeString()}</span>
                                 <div className="flex-center" style={{ gap: 10 }}>
-                                    <span className="flex-center" style={{ gap: 3 }}><Download size={10} style={{ color: '#00f3ff' }} /><span className="font-mono" style={{ fontSize: 10, color: '#00f3ff', fontWeight: 700 }}>{r.download}</span></span>
-                                    <span className="flex-center" style={{ gap: 3 }}><Upload size={10} style={{ color: '#bc13fe' }} /><span className="font-mono" style={{ fontSize: 10, color: '#bc13fe', fontWeight: 700 }}>{r.upload}</span></span>
-                                    <span className="flex-center" style={{ gap: 3 }}><Zap size={10} style={{ color: '#eab308' }} /><span className="font-mono" style={{ fontSize: 10, color: '#eab308' }}>{r.ping}ms</span></span>
+                                    <span className="flex-center" style={{ gap: 3 }}><Download size={10} style={{ color: 'var(--neon-cyan)' }} /><span className="font-mono" style={{ fontSize: 10, color: 'var(--neon-cyan)', fontWeight: 700 }}>{r.download}</span></span>
+                                    <span className="flex-center" style={{ gap: 3 }}><Upload size={10} style={{ color: 'var(--neon-purple)' }} /><span className="font-mono" style={{ fontSize: 10, color: 'var(--neon-purple)', fontWeight: 700 }}>{r.upload}</span></span>
+                                    <span className="flex-center" style={{ gap: 3 }}><Zap size={10} style={{ color: 'var(--neon-yellow, #eab308)' }} /><span className="font-mono" style={{ fontSize: 10, color: 'var(--neon-yellow, #eab308)' }}>{r.ping}ms</span></span>
                                 </div>
-                                <span className="font-mono" style={{ fontSize: 8, color: '#333' }}>{r.scheduleName || r.profile}</span>
+                                <span className="font-mono" style={{ fontSize: 8, color: 'var(--text-muted)' }}>{r.scheduleName || r.profile}</span>
                             </div>
                         ))}
                     </div>

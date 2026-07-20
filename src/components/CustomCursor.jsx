@@ -88,11 +88,11 @@ const CustomCursor = () => {
           borderRadius: isHovering ? '12px' : '50%',
           rotate: isHovering ? 45 : 0,
           backdropFilter: isHovering ? 'blur(6px) brightness(1.3)' : 'blur(0px) brightness(1)',
-          backgroundColor: isHovering ? 'rgba(0, 243, 255, 0.1)' : 'transparent',
-          border: isHovering ? '2px solid rgba(0, 243, 255, 0.8)' : '2px solid rgba(0, 243, 255, 0.4)',
+          backgroundColor: isHovering ? 'rgba(var(--neon-cyan-rgb), 0.1)' : 'transparent',
+          border: isHovering ? '2px solid rgba(var(--neon-cyan-rgb), 0.8)' : '2px solid rgba(var(--neon-cyan-rgb), 0.4)',
           boxShadow: isHovering 
-            ? '0 0 25px rgba(0, 243, 255, 0.5), inset 0 0 15px rgba(0, 243, 255, 0.3)' 
-            : '0 0 10px rgba(0, 243, 255, 0.3)'
+            ? '0 0 25px rgba(var(--neon-cyan-rgb), 0.5), inset 0 0 15px rgba(var(--neon-cyan-rgb), 0.3)' 
+            : '0 0 10px rgba(var(--neon-cyan-rgb), 0.3)'
         }}
       />
     </div>

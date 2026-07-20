@@ -36,14 +36,18 @@ const SpeedTest = ({ session }) => {
 
     useEffect(() => {
         fetchNetworkInfo().then(setNetInfo);
-        (async () => {
-            try {
-                const { error: sErr } = await supabase.storage.from('speedtest_temp').list('',{limit:1});
-                setDiagStatus(p=>({...p, storage: sErr?'ERROR':'OK'}));
-                const { error: dErr } = await supabase.from('daily_speed_logs').select('id').limit(1);
-                setDiagStatus(p=>({...p, db: dErr?'BLOCKED':'OK'}));
-            } catch { setDiagStatus({storage:'OFFLINE',db:'OFFLINE'}); }
-        })();
+        if (session?.isGuest) {
+            setDiagStatus({ storage: 'OFFLINE (GUEST)', db: 'LOCAL (GUEST)' });
+        } else {
+            (async () => {
+                try {
+                    const { error: sErr } = await supabase.storage.from('speedtest_temp').list('',{limit:1});
+                    setDiagStatus(p=>({...p, storage: sErr?'ERROR':'OK'}));
+                    const { error: dErr } = await supabase.from('daily_speed_logs').select('id').limit(1);
+                    setDiagStatus(p=>({...p, db: dErr?'BLOCKED':'OK'}));
+                } catch { setDiagStatus({storage:'OFFLINE',db:'OFFLINE'}); }
+            })();
+        }
     }, []);
 
     const ticks = useMemo(() => {
@@ -58,7 +62,7 @@ const SpeedTest = ({ session }) => {
 
     const getStrokeOffset = v => CIRCUMFERENCE*(1-(Math.min(v,MAX_SPEED)/MAX_SPEED*(TOTAL_ANGLE/360)));
     const getNeedleRotation = v => (Math.min(v,MAX_SPEED)/MAX_SPEED)*TOTAL_ANGLE+START_ANGLE+90;
-    const getPhaseColor = () => phase==='DOWNLOAD'?'#00f3ff':phase==='UPLOAD'?'#bc13fe':phase==='LATENCY'?'#eab308':'#00f3ff';
+    const getPhaseColor = () => phase==='DOWNLOAD'?'var(--neon-cyan)':phase==='UPLOAD'?'var(--neon-purple)':phase==='LATENCY'?'var(--neon-yellow, #eab308)':'var(--neon-cyan)';
     const addLog = msg => setTestLog(p=>[...p,{time:new Date().toLocaleTimeString(),msg}]);
 
     const runTest = async () => {
@@ -98,6 +102,23 @@ const SpeedTest = ({ session }) => {
 
     const saveResults = async td => {
         const today = new Date().toISOString().split('T')[0];
+        if (session?.isGuest) {
+            try {
+                const localLogs = JSON.parse(localStorage.getItem('netchronaix_guest_speed_logs') || '[]');
+                let row = localLogs.find(r => r.user_id === 'guest' && r.date === today);
+                if (row) {
+                    row.tests = [...row.tests, td];
+                } else {
+                    row = { id: crypto.randomUUID(), user_id: 'guest', date: today, tests: [td] };
+                    localLogs.push(row);
+                }
+                localStorage.setItem('netchronaix_guest_speed_logs', JSON.stringify(localLogs));
+                addLog('Saved locally.');
+            } catch (e) {
+                addLog('LCL_INS: ' + e.message);
+            }
+            return;
+        }
         const {data:rows,error:fe} = await supabase.from('daily_speed_logs').select('*').eq('user_id',session.user.id).eq('date',today);
         if (fe) {addLog('DB_READ: '+fe.message);return;}
         const row = rows?.length>0?rows[0]:null;
@@ -188,26 +209,26 @@ const SpeedTest = ({ session }) => {
             {/* RESULTS */}
             <motion.div variants={itemVariants} className="results-row">
                 <div className="result-card result-dl">
-                    <Download size={18} style={{color:'#00f3ff',opacity:0.5}}/>
+                    <Download size={18} style={{color:'var(--neon-cyan)',opacity:0.5}}/>
                     <span className="result-label">Download</span>
                     <div className="result-value-row">
-                        <span className="result-value" style={{color:'#00f3ff',textShadow:'0 0 12px rgba(0,243,255,0.4)'}}>{results.download||'—'}</span>
+                        <span className="result-value" style={{color:'var(--neon-cyan)',textShadow:'0 0 12px rgba(var(--neon-cyan-rgb),0.4)'}}>{results.download||'—'}</span>
                         <span className="result-unit">Mbps</span>
                     </div>
                 </div>
                 <div className="result-card result-ul">
-                    <Upload size={18} style={{color:'#bc13fe',opacity:0.5}}/>
+                    <Upload size={18} style={{color:'var(--neon-purple)',opacity:0.5}}/>
                     <span className="result-label">Upload</span>
                     <div className="result-value-row">
-                        <span className="result-value" style={{color:'#bc13fe',textShadow:'0 0 12px rgba(188,19,254,0.4)'}}>{results.upload||'—'}</span>
+                        <span className="result-value" style={{color:'var(--neon-purple)',textShadow:'0 0 12px rgba(var(--neon-purple-rgb),0.4)'}}>{results.upload||'—'}</span>
                         <span className="result-unit">Mbps</span>
                     </div>
                 </div>
                 <div className="result-card result-ping">
-                    <Zap size={18} style={{color:'#eab308',opacity:0.5}}/>
+                    <Zap size={18} style={{color:'var(--neon-yellow, #eab308)',opacity:0.5}}/>
                     <span className="result-label">Latency</span>
                     <div className="result-value-row">
-                        <span className="result-value" style={{color:'#eab308',textShadow:'0 0 12px rgba(234,179,8,0.4)'}}>{results.ping||'—'}</span>
+                        <span className="result-value" style={{color:'var(--neon-yellow, #eab308)',textShadow:'0 0 12px rgba(var(--neon-yellow-rgb, 234,179,8),0.4)'}}>{results.ping||'—'}</span>
                         <span className="result-unit">ms</span>
                     </div>
                 </div>
@@ -232,7 +253,7 @@ const SpeedTest = ({ session }) => {
                 </div>
                 <div className="metric-card">
                     <span className="metric-title">ISP</span>
-                    <span className="metric-value" style={{fontSize:11,letterSpacing:0,color:'#aaa',lineHeight:1.3}}>{netInfo?.isp||'—'}</span>
+                    <span className="metric-value" style={{fontSize:11,letterSpacing:0,color:'var(--text-muted)',lineHeight:1.3}}>{netInfo?.isp||'—'}</span>
                     <span className="metric-range">{netInfo?.city||''}</span>
                 </div>
             </motion.div>
@@ -243,9 +264,9 @@ const SpeedTest = ({ session }) => {
             {/* SERVER INFO */}
             <motion.div variants={itemVariants} className="server-panel">
                 <div className="server-header">
-                    <Globe size={14} style={{color:'#00f3ff',opacity:0.5}}/>
-                    <span className="font-orbitron" style={{fontSize:8,letterSpacing:3,color:'#555'}}>SERVER & NETWORK</span>
-                    {testTime&&<span className="font-mono" style={{fontSize:8,color:'#444',marginLeft:'auto'}}>Measured at {testTime}</span>}
+                    <Globe size={14} style={{color:'var(--neon-cyan)',opacity:0.5}}/>
+                    <span className="font-orbitron" style={{fontSize:8,letterSpacing:3,color:'var(--text-muted)'}}>SERVER & NETWORK</span>
+                    {testTime&&<span className="font-mono" style={{fontSize:8,color:'var(--text-muted)',marginLeft:'auto'}}>Measured at {testTime}</span>}
                 </div>
                 <div className="server-grid">
                     <div className="server-item"><span className="server-key">Your IP</span><span className="server-val">{netInfo?.ip||'—'}</span></div>
@@ -258,17 +279,17 @@ const SpeedTest = ({ session }) => {
             {/* TEST LOG */}
             <motion.div variants={itemVariants} className="glass-panel" style={{width:'100%',overflow:'hidden'}}>
                 <button className="log-toggle" onClick={()=>setShowLog(!showLog)}>
-                    <div className="flex-center" style={{gap:6}}><BarChart3 size={12} style={{color:'#555'}}/><span className="font-orbitron" style={{fontSize:8,letterSpacing:2,color:'#555'}}>TEST LOG</span><span className="font-mono" style={{fontSize:8,color:'#333'}}>({testLog.length})</span></div>
-                    {showLog?<ChevronUp size={14} style={{color:'#555'}}/>:<ChevronDown size={14} style={{color:'#555'}}/>}
+                    <div className="flex-center" style={{gap:6}}><BarChart3 size={12} style={{color:'var(--text-muted)'}}/><span className="font-orbitron" style={{fontSize:8,letterSpacing:2,color:'var(--text-muted)'}}>TEST LOG</span><span className="font-mono" style={{fontSize:8,color:'var(--text-muted)'}}>({testLog.length})</span></div>
+                    {showLog?<ChevronUp size={14} style={{color:'var(--text-muted)'}}/>:<ChevronDown size={14} style={{color:'var(--text-muted)'}}/>}
                 </button>
-                {showLog&&<div className="log-body">{testLog.map((e,i)=><div key={i} className="log-entry"><span className="log-time">{e.time}</span><span className="log-msg">{e.msg}</span></div>)}{testLog.length===0&&<div className="log-entry"><span className="log-msg" style={{color:'#333'}}>No data yet.</span></div>}</div>}
+                {showLog&&<div className="log-body">{testLog.map((e,i)=><div key={i} className="log-entry"><span className="log-time">{e.time}</span><span className="log-msg">{e.msg}</span></div>)}{testLog.length===0&&<div className="log-entry"><span className="log-msg" style={{color:'var(--text-muted)'}}>No data yet.</span></div>}</div>}
             </motion.div>
 
             {/* FOOTER */}
             <div className="diag-footer">
-                <span className="font-mono" style={{fontSize:8,color:'#333'}}>Storage: <b style={{color:diagStatus.storage==='OK'?'#22c55e':'#ef4444'}}>{diagStatus.storage}</b></span>
-                <span className="font-mono" style={{fontSize:8,color:'#333'}}>Database: <b style={{color:diagStatus.db==='OK'?'#22c55e':'#ef4444'}}>{diagStatus.db}</b></span>
-                <span className="font-mono" style={{fontSize:8,color:'#333'}}>Profile: <b style={{color:'#00f3ff'}}>{profile.label}</b></span>
+                <span className="font-mono" style={{fontSize:8,color:'var(--text-muted)'}}>Storage: <b style={{color:diagStatus.storage==='OK'?'#22c55e':'#ef4444'}}>{diagStatus.storage}</b></span>
+                <span className="font-mono" style={{fontSize:8,color:'var(--text-muted)'}}>Database: <b style={{color:diagStatus.db==='OK'?'#22c55e':'#ef4444'}}>{diagStatus.db}</b></span>
+                <span className="font-mono" style={{fontSize:8,color:'var(--text-muted)'}}>Profile: <b style={{color:'var(--neon-cyan)'}}>{profile.label}</b></span>
             </div>
         </motion.div>
     );

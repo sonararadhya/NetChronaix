@@ -28,6 +28,21 @@ const Dashboard = ({ session }) => {
 
   const fetchLogs = async () => {
     setLoading(true);
+    if (session?.isGuest) {
+      try {
+        const data = JSON.parse(localStorage.getItem('netchronaix_guest_speed_logs') || '[]');
+        data.sort((a, b) => b.date.localeCompare(a.date));
+        setLogs(data);
+        setChartData(data.flatMap(day => day.tests.map(test => ({
+          ...test, date: day.date,
+          time: test.timestamp ? test.timestamp.split('T')[1]?.split('.')[0] : ''
+        }))).reverse());
+      } catch (e) {
+        console.error('Failed to load guest logs:', e);
+      }
+      setLoading(false);
+      return;
+    }
     const { data } = await supabase.from('daily_speed_logs').select('*').eq('user_id', session.user.id).order('date', { ascending: false });
     if (data) {
       setLogs(data);
@@ -46,11 +61,27 @@ const Dashboard = ({ session }) => {
   };
 
   const handleDeleteAll = async () => {
+    if (session?.isGuest) {
+      localStorage.setItem('netchronaix_guest_speed_logs', '[]');
+      setLogs([]); setChartData([]); setConfirmDelete(false);
+      return;
+    }
     const { error } = await supabase.from('daily_speed_logs').delete().eq('user_id', session.user.id);
     if (!error) { setLogs([]); setChartData([]); setConfirmDelete(false); }
   };
 
   const handleDeleteDay = async (id) => {
+    if (session?.isGuest) {
+      try {
+        const localLogs = JSON.parse(localStorage.getItem('netchronaix_guest_speed_logs') || '[]');
+        const filtered = localLogs.filter(d => d.id !== id);
+        localStorage.setItem('netchronaix_guest_speed_logs', JSON.stringify(filtered));
+        fetchLogs();
+      } catch (e) {
+        console.error('Failed to delete guest log day:', e);
+      }
+      return;
+    }
     const { error } = await supabase.from('daily_speed_logs').delete().eq('id', id);
     if (!error) fetchLogs();
   };

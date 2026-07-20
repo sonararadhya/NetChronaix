@@ -5,7 +5,7 @@ import { t, getLang, setLang, LANGUAGES } from '../lib/i18n';
 import { Gauge, BarChart3, Clock, Shield, Download, LogOut, Activity, Globe, Menu, X, Sun, Moon } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const Navbar = ({ session }) => {
+const Navbar = ({ session, setSession }) => {
   const location = useLocation();
   const navigate = useNavigate();
   const [, forceUpdate] = useState(0);
@@ -45,7 +45,15 @@ const Navbar = ({ session }) => {
     }
   };
 
-  const handleLogout = async () => { await supabase.auth.signOut(); navigate('/login'); };
+  const handleLogout = async () => {
+    if (session?.isGuest) {
+      localStorage.removeItem('netchronaix_guest_session');
+      setSession(null);
+    } else {
+      await supabase.auth.signOut();
+    }
+    navigate('/login');
+  };
   const currentLang = getLang();
 
   const navLinks = [

@@ -46,7 +46,7 @@ const ResetPassword = () => {
             <CheckCircle style={{ color: '#22c55e' }} size={40} />
           </div>
           <h2 className="font-orbitron neon-text-cyan" style={{ fontSize: '1.5rem' }}>PASSWORD UPDATED</h2>
-          <p className="font-mono" style={{ fontSize: 12, color: '#aaa' }}>Your access key has been successfully reconfigured. Redirecting to terminal...</p>
+          <p className="font-mono" style={{ fontSize: 12, color: 'var(--text-muted)' }}>Your access key has been successfully reconfigured. Redirecting to terminal...</p>
         </div>
       </div>
     );
@@ -58,10 +58,10 @@ const ResetPassword = () => {
         <div className="tech-corner tc-tl"></div><div className="tech-corner tc-tr"></div>
         <div className="tech-corner tc-bl"></div><div className="tech-corner tc-br"></div>
         <div className="flex-col-center" style={{ gap: 28, textAlign: 'center' }}>
-          <KeyRound style={{ color: '#00f3ff' }} size={36} />
+          <KeyRound style={{ color: 'var(--neon-cyan)' }} size={36} />
           <div>
-            <h2 style={{ fontFamily: 'var(--font-header)', fontSize: '1.5rem', color: '#00f3ff', textShadow: '0 0 12px rgba(0,243,255,0.4)', marginBottom: 6 }}>NEW ACCESS KEY</h2>
-            <p className="font-mono" style={{ fontSize: 11, color: '#aaa', letterSpacing: 2 }}>ENTER YOUR NEW PASSWORD</p>
+            <h2 style={{ fontFamily: 'var(--font-header)', fontSize: '1.5rem', color: 'var(--neon-cyan)', textShadow: '0 0 12px rgba(var(--neon-cyan-rgb),0.4)', marginBottom: 6 }}>NEW ACCESS KEY</h2>
+            <p className="font-mono" style={{ fontSize: 11, color: 'var(--text-muted)', letterSpacing: 2 }}>ENTER YOUR NEW PASSWORD</p>
           </div>
           
           <form onSubmit={handleReset} style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: 16 }}>
@@ -69,7 +69,7 @@ const ResetPassword = () => {
               <label className="label-tech">New Password</label>
               <div style={{ position: 'relative' }}>
                 <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} className="input-field" placeholder="••••••••••" required minLength="6" />
-                <Lock size={16} style={{ position: 'absolute', right: 14, top: 16, color: '#888' }} />
+                <Lock size={16} style={{ position: 'absolute', right: 14, top: 16, color: 'var(--text-muted)' }} />
               </div>
             </div>
 

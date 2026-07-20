@@ -123,15 +123,15 @@ const FileMonitor = ({ session }) => {
         setDownloading(false);
     };
 
-    const phaseColor = downloading ? '#00f3ff' : complete ? '#22c55e' : '#555';
+    const phaseColor = downloading ? 'var(--neon-cyan)' : complete ? 'var(--neon-green, #22c55e)' : 'var(--text-muted)';
 
     return (
         <div className="container-main">
             {/* HEADER */}
             <header className="flex-col-center text-center" style={{ marginBottom: 28, gap: 8 }}>
                 <div className="flex-center" style={{ gap: 12 }}>
-                    <div className="header-icon-box" style={{ background: 'rgba(0,243,255,0.1)', borderColor: 'rgba(0,243,255,0.2)' }}>
-                        <Download style={{ color: '#00f3ff' }} size={24} />
+                    <div className="header-icon-box" style={{ background: 'rgba(var(--neon-cyan-rgb), 0.1)', borderColor: 'rgba(var(--neon-cyan-rgb), 0.2)' }}>
+                        <Download style={{ color: 'var(--neon-cyan)' }} size={24} />
                     </div>
                     <div style={{ textAlign: 'left' }}>
                         <h1 className="header-title">FILE MONITOR</h1>
@@ -146,7 +146,7 @@ const FileMonitor = ({ session }) => {
                 <div style={{ display: 'flex', gap: 8 }}>
                     <div style={{ flex: 1, position: 'relative' }}>
                         <input type="url" value={url} onChange={e => setUrl(e.target.value)} className="input-field" placeholder="https://example.com/large-file.zip" disabled={downloading} style={{ paddingLeft: 36 }} />
-                        <Link2 size={14} style={{ position: 'absolute', left: 12, top: 16, color: '#444' }} />
+                        <Link2 size={14} style={{ position: 'absolute', left: 12, top: 16, color: 'var(--text-muted)' }} />
                     </div>
                     {downloading ? (
                         <button onClick={stopDownload} className="btn-primary" style={{ padding: '14px 24px', borderColor: '#ef4444', color: '#ef4444', textShadow: 'none' }}>
@@ -167,23 +167,23 @@ const FileMonitor = ({ session }) => {
                     <Gauge size={18} style={{ color: phaseColor, opacity: 0.5 }} />
                     <span className="result-label">Current Speed</span>
                     <div className="result-value-row">
-                        <span className="result-value" style={{ color: phaseColor, textShadow: `0 0 12px ${phaseColor}40` }}>{downloading ? currentSpeed : complete ? avgSpeed : '—'}</span>
+                        <span className="result-value" style={{ color: phaseColor, textShadow: downloading ? '0 0 12px rgba(var(--neon-cyan-rgb), 0.4)' : complete ? '0 0 12px rgba(34, 197, 94, 0.4)' : 'none' }}>{downloading ? currentSpeed : complete ? avgSpeed : '—'}</span>
                         <span className="result-unit">Mbps</span>
                     </div>
                 </div>
-                <div className="result-card" style={{ borderTop: '3px solid #bc13fe' }}>
-                    <TrendingUp size={18} style={{ color: '#bc13fe', opacity: 0.5 }} />
+                <div className="result-card" style={{ borderTop: '3px solid var(--neon-purple)' }}>
+                    <TrendingUp size={18} style={{ color: 'var(--neon-purple)', opacity: 0.5 }} />
                     <span className="result-label">Peak Speed</span>
                     <div className="result-value-row">
-                        <span className="result-value" style={{ color: '#bc13fe', textShadow: '0 0 12px rgba(188,19,254,0.4)' }}>{peakSpeed || '—'}</span>
+                        <span className="result-value" style={{ color: 'var(--neon-purple)', textShadow: '0 0 12px rgba(var(--neon-purple-rgb), 0.4)' }}>{peakSpeed || '—'}</span>
                         <span className="result-unit">Mbps</span>
                     </div>
                 </div>
-                <div className="result-card" style={{ borderTop: '3px solid #eab308' }}>
-                    <Clock size={18} style={{ color: '#eab308', opacity: 0.5 }} />
+                <div className="result-card" style={{ borderTop: '3px solid var(--neon-yellow, #eab308)' }}>
+                    <Clock size={18} style={{ color: 'var(--neon-yellow, #eab308)', opacity: 0.5 }} />
                     <span className="result-label">{complete ? 'Total Time' : 'ETA'}</span>
                     <div className="result-value-row">
-                        <span className="result-value" style={{ color: '#eab308', textShadow: '0 0 12px rgba(234,179,8,0.4)', fontSize: 28 }}>{complete ? formatTime(elapsed) : formatTime(eta)}</span>
+                        <span className="result-value" style={{ color: 'var(--neon-yellow, #eab308)', textShadow: '0 0 12px rgba(var(--neon-yellow-rgb, 234,179,8), 0.4)', fontSize: 28 }}>{complete ? formatTime(elapsed) : formatTime(eta)}</span>
                     </div>
                 </div>
             </div>
@@ -198,8 +198,8 @@ const FileMonitor = ({ session }) => {
                     <div className="progress-bar-fill" style={{ width: `${progress}%`, background: phaseColor, boxShadow: `0 0 15px ${phaseColor}`, borderRadius: 6, transition: 'width 0.3s ease' }}></div>
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 8 }}>
-                    <span className="font-mono" style={{ fontSize: 9, color: '#444' }}>Elapsed: {formatTime(elapsed)}</span>
-                    <span className="font-mono" style={{ fontSize: 9, color: '#444' }}>Avg: {avgSpeed} Mbps</span>
+                    <span className="font-mono" style={{ fontSize: 9, color: 'var(--text-muted)' }}>Elapsed: {formatTime(elapsed)}</span>
+                    <span className="font-mono" style={{ fontSize: 9, color: 'var(--text-muted)' }}>Avg: {avgSpeed} Mbps</span>
                 </div>
             </div>
 
@@ -208,9 +208,9 @@ const FileMonitor = ({ session }) => {
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 4 }}>
                     <div className="flex-center" style={{ gap: 6 }}>
                         <BarChart3 size={12} style={{ color: phaseColor }} />
-                        <span className="font-orbitron" style={{ fontSize: 8, letterSpacing: 2, color: '#555' }}>DOWNLOAD SPEED GRAPH</span>
+                        <span className="font-orbitron" style={{ fontSize: 8, letterSpacing: 2, color: 'var(--text-muted)' }}>DOWNLOAD SPEED GRAPH</span>
                     </div>
-                    <span className="font-mono" style={{ fontSize: 8, color: '#333' }}>{speedData.length} samples</span>
+                    <span className="font-mono" style={{ fontSize: 8, color: 'var(--text-muted)' }}>{speedData.length} samples</span>
                 </div>
                 <div style={{ height: 95 }}>
                     <ResponsiveContainer width="100%" height="100%">
@@ -235,11 +235,11 @@ const FileMonitor = ({ session }) => {
                         </div>
                     </div>
                     <div className="ai-insights">
-                        <div className="ai-insight" style={{ borderLeftColor: '#22c55e' }}>
+                        <div className="ai-insight" style={{ borderLeftColor: 'var(--neon-green, #22c55e)' }}>
                             <span className="ai-insight-icon">📦</span>
                             <span className="ai-insight-text">Downloaded <b>{formatSize(downloaded)}</b> in <b>{formatTime(elapsed)}</b></span>
                         </div>
-                        <div className="ai-insight" style={{ borderLeftColor: '#00f3ff' }}>
+                        <div className="ai-insight" style={{ borderLeftColor: 'var(--neon-cyan)' }}>
                             <span className="ai-insight-icon">📊</span>
                             <span className="ai-insight-text">Average speed: <b>{avgSpeed} Mbps</b> | Peak: <b>{peakSpeed} Mbps</b></span>
                         </div>

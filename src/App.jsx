@@ -15,13 +15,13 @@ import PageWrapper from './components/PageWrapper';
 import CustomCursor from './components/CustomCursor';
 import LiquidBackground from './components/LiquidBackground';
 
-const AnimatedRoutes = ({ session }) => {
+const AnimatedRoutes = ({ session, setSession }) => {
   const location = useLocation();
   
   return (
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
-        <Route path="/login" element={!session ? <PageWrapper><Login /></PageWrapper> : <Navigate to="/" />} />
+        <Route path="/login" element={!session ? <PageWrapper><Login setSession={setSession} /></PageWrapper> : <Navigate to="/" />} />
         <Route path="/register" element={!session ? <PageWrapper><Register /></PageWrapper> : <Navigate to="/" />} />
         <Route path="/reset-password" element={!session ? <PageWrapper><ResetPassword /></PageWrapper> : <Navigate to="/" />} />
         <Route path="/" element={session ? <PageWrapper><SpeedTest session={session} /></PageWrapper> : <Navigate to="/login" />} />
@@ -39,6 +39,13 @@ function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    const guestSess = localStorage.getItem('netchronaix_guest_session');
+    if (guestSess) {
+      setSession(JSON.parse(guestSess));
+      setLoading(false);
+      return;
+    }
+
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
       setLoading(false);
@@ -48,7 +55,11 @@ function App() {
     });
 
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session);
+      if (session) {
+        setSession(session);
+      } else if (!localStorage.getItem('netchronaix_guest_session')) {
+        setSession(null);
+      }
       setLoading(false);
     });
 
@@ -71,9 +82,9 @@ function App() {
       <CustomCursor />
       <LiquidBackground>
         <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-          {session && <Navbar session={session} />}
+          {session && <Navbar session={session} setSession={setSession} />}
           <main style={{ flex: 1, position: 'relative', zIndex: 10 }}>
-            <AnimatedRoutes session={session} />
+            <AnimatedRoutes session={session} setSession={setSession} />
           </main>
         </div>
       </LiquidBackground>

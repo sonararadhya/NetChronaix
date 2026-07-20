@@ -72,7 +72,7 @@ const AiAnalysis = ({ results, netInfo }) => {
             {/* Header */}
             <div className="ai-header">
                 <div className="ai-bot-icon">
-                    <Bot size={20} style={{ color: '#00f3ff' }} />
+                    <Bot size={20} style={{ color: 'var(--neon-cyan)' }} />
                 </div>
                 <div>
                     <h3 className="ai-title">Network Intelligence Report</h3>
