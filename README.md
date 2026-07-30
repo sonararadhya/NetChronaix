@@ -2,7 +2,7 @@
   <img src="public/favicon.png" alt="NetChronaix Logo" width="120" height="120" />
 
   # 🌐 NetChronaix Zenith V10
-  ### *Advanced Network Intelligence Platform for Real-Time Telemetry & Analysis*
+  ### *An Advanced Network Intelligence Platform for Real-Time Telemetry & Analysis*
 
   <p>
     <img src="https://img.shields.io/badge/Frontend-Vite-purple.svg" />
@@ -11,7 +11,7 @@
     <img src="https://img.shields.io/badge/Status-Production--Ready-success.svg" />
   </p>
 
-  <b>Transform raw network data into actionable intelligence.</b>
+  <b>Transform raw network data into actionable insights.</b>
 
   <br/><br/>
 
@@ -19,7 +19,7 @@
   [🧠 Problem & Solution](#-the-problem) • 
   [⚔️ Comparison](#️-why-netchronaix-stands-out) • 
   [🏗 Architecture](#-technical-architecture) • 
-  [⚙️ Setup](#-installation--setup) • 
+  [⚙️ Installation & Setup](#-installation--setup) • 
   [🎯 Use Cases](#-real-world-use-cases) • 
   [👨‍💻 Author](#-author)
 </div>
@@ -28,15 +28,15 @@
 
 ## 🧠 Overview
 
-**NetChronaix Zenith V10** is a **next-generation network monitoring and analytics platform** designed for developers, gamers, and system analysts who need **deep visibility into network performance**.
+**NetChronaix Zenith V10** is a **next-generation network monitoring and analytics platform** tailored for developers, gamers, and system analysts seeking **in-depth visibility into network performance**.
 
-Unlike traditional speed testers, NetChronaix provides:
+In contrast to conventional speed testers, NetChronaix offers:
 - Real-time telemetry
-- AI-powered diagnostics
+- AI-enhanced diagnostics
 - Historical analytics
 - Professional reporting tools
 
-> ⚡ *Stop guessing your network performance. Start measuring it intelligently.*
+> ⚡ *Stop speculating about your network performance. Start measuring it intelligently.*
 
 ---
 
@@ -63,35 +63,35 @@ Unlike traditional speed testers, NetChronaix provides:
 
 ## 🚨 The Problem
 
-Modern internet users rely on outdated tools that only answer one question:
+Modern internet users often depend on outdated tools that only address a single question:
 
 > *"What is my speed right now?"*
 
-But real-world performance depends on far more:
+However, real-world performance encompasses much more:
 
-- ❌ No visibility into **jitter spikes**
-- ❌ No detection of **packet loss**
+- ❌ Lack of visibility into **jitter spikes**
+- ❌ Inability to detect **packet loss**
 - ❌ No understanding of **network stability over time**
-- ❌ No way to **prove ISP underperformance**
-- ❌ No actionable insights — just raw numbers
+- ❌ No means to **prove ISP underperformance**
+- ❌ No actionable insights — merely raw numbers
 
-⚠️ Result: Users experience lag, buffering, and instability **without knowing why**
+⚠️ Result: Users experience lag, buffering, and instability **without understanding the cause**
 
 ---
 
 ## 💡 The Solution — NetChronaix Zenith
 
-**NetChronaix Zenith transforms raw network tests into intelligent diagnostics.**
+**NetChronaix Zenith converts raw network tests into intelligent diagnostics.**
 
-Instead of a single snapshot, it provides:
+Rather than providing a mere snapshot, it delivers:
 
-- 🧠 **AI-driven analysis** → Understand *why* your network behaves the way it does  
-- 📊 **Continuous telemetry** → Track performance over time  
-- 🗺️ **ISP congestion insights** → Identify peak throttling periods  
-- 📄 **Proof-based reporting** → Generate professional audit reports  
-- ⚡ **Real-time anomaly detection** → Catch issues before they impact you  
+- 🧠 **AI-driven analysis** → Comprehend *why* your network behaves as it does  
+- 📊 **Continuous telemetry** → Monitor performance over time  
+- 🗺️ **ISP congestion insights** → Recognize peak throttling periods  
+- 📄 **Proof-based reporting** → Create professional audit reports  
+- ⚡ **Real-time anomaly detection** → Identify issues before they affect you  
 
-> 🚀 *From “checking speed” → to “understanding network behavior”*
+> 🚀 *Transition from “checking speed” → to “understanding network behavior”*
 
 ---
 
@@ -107,7 +107,7 @@ Instead of a single snapshot, it provides:
 | ISP Congestion Heatmaps  | ✅              | ❌       | ❌       |
 | Proof Reports (PDF)      | ✅              | ❌       | ❌       |
 
-> 🥇 NetChronaix is not just a tester — it's a **complete network intelligence system**
+> 🥇 NetChronaix is not merely a tester — it is a **comprehensive network intelligence system**
 
 ---
 
@@ -120,12 +120,12 @@ Instead of a single snapshot, it provides:
 
 ### 📊 Telemetry & Analytics
 - Historical performance tracking
-- Jitter, latency, packet loss visualization
+- Visualization of jitter, latency, and packet loss
 - Multi-session comparisons
 
 ### 🗺️ ISP Congestion Analysis
 - Time-of-day performance insights
-- Identify throttling patterns
+- Identification of throttling patterns
 - Weekly trend analysis
 
 ### 📄 Reporting System
@@ -199,7 +199,7 @@ npm run dev
 - Identify hidden instability affecting productivity  
 
 ### 🏢 ISPs & Network Providers
-- Analyze congestion patterns across time  
+- Analyze congestion patterns over time  
 - Validate infrastructure performance  
 
 ### 👨‍💻 Developers & Engineers
@@ -208,17 +208,17 @@ npm run dev
 
 ### 📊 Researchers & Analysts
 - Collect structured telemetry data  
-- Perform trend analysis and performance modeling  
+- Conduct trend analysis and performance modeling  
 
 ---
 
 ## 🌟 Why This Project Matters
 
-- Combines **network engineering + AI intelligence**
-- Solves **real-world connectivity problems**
-- Built with **modern production-grade stack**
-- Focused on **performance, UX, and analytics**
-- Demonstrates **full-stack + system design expertise**
+- Merges **network engineering + AI intelligence**
+- Addresses **real-world connectivity challenges**
+- Developed with a **modern production-grade stack**
+- Emphasizes **performance, user experience, and analytics**
+- Showcases **full-stack + system design expertise**
 
 ---
 
